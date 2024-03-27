@@ -13,19 +13,18 @@
     "nmcli"
   ],
   "author": {
-    "name": "Christian Kuster, CH-8342 Wernetshausen",
-    "email": "info@kusti.ch",
-    "url": "http://www.kusti.ch/"
+    "name": "Christian Kuster, Tobias Hopp",
+    "email": "tobi@gaminggeneration.de"
   },
-  "homepage": "https://github.com/ancasicolica/node-wifi-scanner",
+  "homepage": "https://git.gaminggeneration.de/TobiasH/node-wifi-scanner/",
   "bugs": {
-    "url": "https://github.com/ancasicolica/node-wifi-scanner/issues",
+    "url": "https://git.gaminggeneration.de/TobiasH/node-wifi-scanner/issues/",
     "email": "info@ancasicolica.ch"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ancasicolica/node-wifi-scanner.git"
+    "url": "https://git.gaminggeneration.de/TobiasH/node-wifi-scanner.git"
   },
   "engines": {
     "node": ">= 4.0.0",
