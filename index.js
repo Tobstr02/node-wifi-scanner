@@ -66,10 +66,11 @@ function initTools(callback) {
 
 /**
  * Scan the networks with the scanner detected before
- * @param callback
+ * @param {Function|any} callback
+ * @param {boolean} useSudo - Use sudo for access?
  */
-function scanNetworks(callback) {
-  exec(scanner.cmdLine, function (err, stdout) {
+function scanNetworks(callback, useSudo) {
+  exec((useSudo && "sudo ") + scanner.cmdLine, function (err, stdout) {
     if (err) {
       callback(err, null);
       return;
@@ -81,19 +82,23 @@ function scanNetworks(callback) {
 module.exports = {
   /**
  * Funktion zum Scannen von WLAN-Netzwerken
- * @param {function(Error|null, WifiNetwork[]|null)} callback - Rückruffunktion, die aufgerufen wird, sobald der Scan abgeschlossen ist
+ * @param {boolean} useSudo? - Defaults to false | Should sudo be used to get the output?
+ * @return {Promise<WifiNetwork[]|null>} WiFinetwork Array or null
+ * @rejects Returns error on reject
  */
-  scan: function (callback) {
-    if (!scanner) {
-      initTools(function (err, s) {
+  scan: function (useSudo = false) {
+    return new Promise( (resolve, reject) => {
+      if (!scanner) {
+        initTools(function (err, s) {
         if (err) {
-          return callback(err);
+          return reject(err);
         }
         scanner = s;
-        scanNetworks(callback);
+        scanNetworks(resolve, useSudo);
       });
       return;
     }
-    scanNetworks(callback);
+    scanNetworks(resolve, useSudo);
+    } )
   }
 };
