@@ -1,5 +1,9 @@
 #fork of node-wifi-scanner
-https://github.com/ancasicolica/node-wifi-scanner/
+
+This fork is used to improve the ability under linux to scan networks
+It tries to use sudo if accessible
+
+[Node-Wifi-Scanner Github](https://github.com/ancasicolica/node-wifi-scanner/)
 
 
 [![Build Status](https://travis-ci.org/ancasicolica/node-wifi-scanner.svg?branch=master)](https://travis-ci.org/ancasicolica/node-wifi-scanner)
