@@ -70,7 +70,7 @@ function initTools(callback) {
  * @param {boolean} useSudo - Use sudo for access?
  */
 function scanNetworks(callback, useSudo) {
-  exec((useSudo && "sudo ") + scanner.cmdLine, function (err, stdout) {
+  exec((useSudo ? "sudo ":"") + scanner.cmdLine, function (err, stdout) {
     if (err) {
       callback(err, null);
       return;
@@ -94,11 +94,20 @@ module.exports = {
           return reject(err);
         }
         scanner = s;
-        scanNetworks(resolve, useSudo);
+	scanNetworks((err, result) => {
+        	if(err)
+                	return reject(err);
+        	resolve(result);
+        }, useSudo);
+
       });
       return;
     }
-    scanNetworks(resolve, useSudo);
-    } )
+    scanNetworks((err, result) => {
+	if(err)
+		return reject(err);
+	resolve(result);
+	}, useSudo);
+    } );
   }
 };
