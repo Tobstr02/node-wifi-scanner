@@ -20,8 +20,8 @@ Beforehand you should add the iwlist scan command to the sudoers file.
 
 
 ### Installation
-`yarn add git+https://git.gaminggeneration.de/tobiash/node-wifi-scanner`
-or `npm install git+https://tobiash@git.gaminggeneration.de/tobiash/node-wifi-scanner`
+`yarn add git+https://github.com/Tobstr02/node-wifi-scanner.git`
+or `npm install git+https://github.com/Tobstr02/node-wifi-scanner.git`
 
 
 ### Type definitions
