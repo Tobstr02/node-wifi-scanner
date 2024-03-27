@@ -13,7 +13,8 @@
  * Created by kc on 04.04.16. - Forked and updated by Tobias Hopp 27.03.2024
  */
 
-const exec    = require('child_process').exec;
+const {exec, spawn}    = require('child_process');
+
 const async   = require('async');
 const _       = require('lodash');
 // The tools
@@ -71,13 +72,35 @@ function initTools(callback) {
  * @param {boolean} useSudo - Use sudo for access?
  */
 function scanNetworks(callback, useSudo) {
-  exec((useSudo ? "sudo ":"") + scanner.cmdLine, function (err, stdout) {
+  const cmd = scanner.cmdLine.split(" ");
+  const args = cmd.slice(1);
+  const child = spawn(cmd[0], args, { stdio: ['ignore', 'pipe', 'pipe'] });
+
+  child.on("error", (err) => callback(err, null) );
+
+  let stdoutData = '';
+  child.stdout.on('data', (data) => {
+    stdoutData += data;
+  });
+
+  child.on('close', (code) => {
+    if (code === 0) {
+      // Prozess erfolgreich beendet, Ausgabe verarbeiten
+      scanner.parseOutput(stdoutData, callback);
+    } else {
+      // Prozess mit Fehler beendet
+      callback(new Error(`Exited with code ${code}`), null);
+    }
+  });
+
+  /*exec((useSudo ? "sudo ":"") + scanner.cmdLine, { shell: true }, function (err, stdout) {
     if (err) {
       callback(err, null);
       return;
     }
     scanner.parseOutput(stdout, callback);
-  });
+  });*/
+
 }
 
 module.exports = {
