@@ -1,15 +1,16 @@
 /**
  * @typedef {Object} WifiNetwork
- * @property {string} ssid - SSID des WLAN-Netzwerks
- * @property {string} mac - MAC-Adresse des WLAN-Netzwerks
- * @property {number} channel - Kanal des WLAN-Netzwerks
- * @property {number} rssi - Signalstärke des WLAN-Netzwerks (RSSI)
+ * @property {string} ssid - SSID of the wifi
+ * @property {string} mac - MAC-Address of the wifi
+ * @property {number} channel - Channel of the wifi
+ * @property {number} rssi - Signalstrength of Wifi-Network (RSSI)
+ * @property {boolean} encrypted - Encrypted
  */
 
 
 /**
  * node-wifi-scanner
- * Created by kc on 04.04.16.
+ * Created by kc on 04.04.16. - Forked and updated by Tobias Hopp 27.03.2024
  */
 
 const exec    = require('child_process').exec;
@@ -81,7 +82,7 @@ function scanNetworks(callback, useSudo) {
 
 module.exports = {
   /**
- * Funktion zum Scannen von WLAN-Netzwerken
+ * Scan for wifi networks
  * @param {boolean} useSudo? - Defaults to false | Should sudo be used to get the output?
  * @return {Promise<WifiNetwork[]|null>} WiFinetwork Array or null
  * @rejects Returns error on reject
