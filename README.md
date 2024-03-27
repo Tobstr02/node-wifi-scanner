@@ -1,4 +1,6 @@
-#node-wifi-scanner
+#fork of node-wifi-scanner
+https://github.com/ancasicolica/node-wifi-scanner/
+
 
 [![Build Status](https://travis-ci.org/ancasicolica/node-wifi-scanner.svg?branch=master)](https://travis-ci.org/ancasicolica/node-wifi-scanner)
 [![npm](https://img.shields.io/npm/v/node-wifi-scanner.svg)]()
