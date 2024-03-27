@@ -1,4 +1,13 @@
 /**
+ * @typedef {Object} WifiNetwork
+ * @property {string} ssid - SSID des WLAN-Netzwerks
+ * @property {string} mac - MAC-Adresse des WLAN-Netzwerks
+ * @property {number} channel - Kanal des WLAN-Netzwerks
+ * @property {number} rssi - Signalstärke des WLAN-Netzwerks (RSSI)
+ */
+
+
+/**
  * node-wifi-scanner
  * Created by kc on 04.04.16.
  */
@@ -71,9 +80,9 @@ function scanNetworks(callback) {
 
 module.exports = {
   /**
-   * Scan for wifis
-   * @param callback
-   */
+ * Funktion zum Scannen von WLAN-Netzwerken
+ * @param {function(Error|null, WifiNetwork[]|null)} callback - Rückruffunktion, die aufgerufen wird, sobald der Scan abgeschlossen ist
+ */
   scan: function (callback) {
     if (!scanner) {
       initTools(function (err, s) {
