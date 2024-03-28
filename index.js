@@ -121,6 +121,8 @@ module.exports = {
 	scanNetworks((err, result) => {
         	if(err)
                 	return reject(err);
+		if(!result)
+			result = [];
         	resolve(result);
         }, useSudo);
 
@@ -130,6 +132,8 @@ module.exports = {
     scanNetworks((err, result) => {
 	if(err)
 		return reject(err);
+	if(!result)
+		result = [];
 	resolve(result);
 	}, useSudo);
     } );
