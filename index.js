@@ -126,7 +126,7 @@ module.exports = {
 		if(!result)
 			result = [];
         	resolve(result);
-        }, useSudo);
+        }, useSudo && scanner == iwlist);
 
       });
       return;
@@ -137,7 +137,7 @@ module.exports = {
 	if(!result)
 		result = [];
 	resolve(result);
-	}, useSudo);
+	}, useSudo && scanner == iwlist);
     } );
   }
 };
