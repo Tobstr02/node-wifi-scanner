@@ -74,7 +74,7 @@ function initTools(callback) {
 function scanNetworks(callback, useSudo) {
   const cmd = scanner.cmdLine.split(" ");
   const args = cmd.slice(1);
-  const child = spawn(cmd[0], args, { stdio: ['ignore', 'pipe', 'pipe'], detached: true });
+  const child = spawn((useSudo ? "sudo " : "" ) + cmd[0], args, { stdio: ['ignore', 'pipe', 'pipe'], detached: true });
 
   child.on("error", (err) => callback(err, null) );
 
